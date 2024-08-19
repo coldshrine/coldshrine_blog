@@ -14,7 +14,7 @@ My personal website, built with [Next.js](https://nextjs.org/), [Tailwind CSS](h
 
 
 ```sh-session
-git clone https://github.com/coldshrine/coldshrine.com.git
+git clone https://github.com/coldshrine/coldshrine_blog.git
 cd coldshrine.com
 ```
 
