@@ -1,0 +1,36 @@
+---
+title: "thoughts on Streamlit"
+description: Streamlit instead of “real” frontend
+date: "2024-09-20"
+published: true
+---
+
+Streamlit: Simplifying Data Storytelling Through Interactive Apps
+
+Throughout my work as a data analyst and in collaboration with data analysts and data scientists, I often faced challenges in visualizing KPI results and similar business metrics. These challenges arose not only from the need to use raw SQL but also from the requirement to perform Python coding, which frequently involved complex machine learning tasks, such as using `numpy.random.choice`. These tasks were executed in a notebook format to monitor intermediate steps and obtain final results.
+
+To address these issues, I implemented Streamlit for a wide range of tasks. We utilized it for interactive plots that went beyond simple data toggling or selective aggregation. We created fully interactive visualizations, including time series selection, recording time series properties, and storing them for further analysis.
+
+When you launch a Streamlit app, the framework initiates a web server that hosts a single-page application (SPA). The content of this SPA is dynamically generated based on the Python script you’ve written. The frontend and web server maintain continuous communication, with the frontend sending events that trigger Python code execution on the server. The results of these executions are then used to update the frontend view dynamically. This distinctive server-client architecture allows you to create interactive web applications solely through server-side Python code.
+
+## Streamlit Architecture
+[![](/st_architecture_001.png)](https://www.whitphx.info/posts/20221104-streamlit-wasm-stlite/)
+
+It’s quite amazing and straightforward—especially if you’re not a web development expert—to have the ability to quickly create a visual representation of everything you need while keeping all the backend complexities hidden. However, would I use it for every situation that requires a web page? Definitely not. Streamlit works well for less complicated tasks, but when an app needs to scale up, more challenges start to emerge.
+
+### Pros:
+- **Rapid Prototyping:** Ideal for quickly testing or trying out ideas with minimal setup, especially if you’re not deeply versed in web development.
+- **Noob-Friendly:** Extremely easy development experience, allowing even beginners to create interactive applications.
+- **Python Backend:** Enables highly customizable actions like interacting with APIs, writing to databases, and more, surpassing the capabilities of standard read-only dashboards.
+- **Strong Community:** Continuous improvements and a robust community to support and enhance the framework.
+- **CI/CD Integration:** Seamless integration with GitHub for continuous integration and deployment, which is not easily achievable with tools like PowerBI or Tableau.
+
+### Cons:
+- **Lack of Modularity:** Components are not isolated, meaning changes in one component can break others, with limited debugging options.
+- **Global Scope Issues:** Streamlit heavily relies on global scope in Python, an anti-pattern that can lead to confusion and hard-to-debug problems.
+- **HTML Life-Cycle Constraints:** Streamlit is very opinionated about HTML life-cycle, making it difficult or sometimes impossible to integrate JavaScript libraries with complex components.
+- **Scaling Challenges:** As applications scale, more issues arise, such as session state sharing between users, difficulties with caching, and multi-page navigation.
+- **No Endpoints or Styles:** Limited ability to define endpoints, customize components, or handle async calls, with the entire Python script rerunning on every page refresh.
+- **Limited Multi-Page Support:** Multi-page variables are not yet fully supported, and multi-page navigation and organization need improvement.
+
+Streamlit is a fantastic tool for rapid prototyping and creating applications with minimal visual web interfaces. However, it’s not designed to replace fully engineered software and comes with limitations that make it less suitable for more complex, scalable applications.
