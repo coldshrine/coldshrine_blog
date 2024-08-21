@@ -4,14 +4,11 @@ description: Streamlit instead of “real” frontend
 date: "2024-09-20"
 published: true
 ---
+Throughout my work as a data analyst and in collaboration with data analysts and data scientists, I often faced challenges in visualizing KPI results and similar business metrics. These challenges arose not only from the need to use raw SQL but also from the requirement to perform Python coding, which frequently involved machine learning tasks, applying weights, or using [![](/legacy generators)](https://numpy.org/doc/stable/reference/random/legacy.html#). These tasks were executed in a notebook format to monitor intermediate steps and obtain final results.
 
-Streamlit: Simplifying Data Storytelling Through Interactive Apps
+To address these issues, we tried to implement Streamlit monolyth services for a wide range of tasks. We utilized it for interactive plots that went beyond simple data toggling or selective aggregation. We created fully interactive visualizations, including time series selection, recording time series properties, and storing them for further analysis.
 
-Throughout my work as a data analyst and in collaboration with data analysts and data scientists, I often faced challenges in visualizing KPI results and similar business metrics. These challenges arose not only from the need to use raw SQL but also from the requirement to perform Python coding, which frequently involved complex machine learning tasks, such as using `numpy.random.choice`. These tasks were executed in a notebook format to monitor intermediate steps and obtain final results.
-
-To address these issues, I implemented Streamlit for a wide range of tasks. We utilized it for interactive plots that went beyond simple data toggling or selective aggregation. We created fully interactive visualizations, including time series selection, recording time series properties, and storing them for further analysis.
-
-When you launch a Streamlit app, the framework initiates a web server that hosts a single-page application (SPA). The content of this SPA is dynamically generated based on the Python script you’ve written. The frontend and web server maintain continuous communication, with the frontend sending events that trigger Python code execution on the server. The results of these executions are then used to update the frontend view dynamically. This distinctive server-client architecture allows you to create interactive web applications solely through server-side Python code.
+When you launch a Streamlit app, the framework initiates a web server that hosts a single-page application (SPA). The content of this SPA is dynamically generated based on the Python script you’ve written (from top to the bottom). The frontend and web server maintain continuous communication, with the frontend sending events that trigger Python code execution on the server. The results of these executions are then used to update the frontend view dynamically. This distinctive server-client architecture allows to create interactive web applications solely through server-side Python code.
 
 ## Streamlit Architecture
 [![](/st_architecture_001.png)](https://www.whitphx.info/posts/20221104-streamlit-wasm-stlite/)
