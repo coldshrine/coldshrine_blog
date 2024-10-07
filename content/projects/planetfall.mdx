@@ -8,13 +8,13 @@ published: true
 
 # RAGs Overview
 
-\1. **Retrieval-Augmented Generation (RAG)** enhances model performance by retrieving only the most relevant data before generating a response. This makes the process faster and more efficient, especially with large datasets.
+1. **Retrieval-Augmented Generation (RAG)** enhances model performance by retrieving only the most relevant data before generating a response. This makes the process faster and more efficient, especially with large datasets.
 
-\2. An example from *Reading Wikipedia to Answer Open-Domain Questions* (Chen et al., 2017) shows how a model retrieves five relevant Wikipedia pages for a query, using that information to generate a better answer.
+2. An example from *Reading Wikipedia to Answer Open-Domain Questions* (Chen et al., 2017) shows how a model retrieves five relevant Wikipedia pages for a query, using that information to generate a better answer.
 
    [![](/2_1_retreive_then_generate.png)](https://arxiv.org/abs/1704.00051)
 
-\3. **For engineers**, RAG means building systems that can quickly retrieve key data, allowing models to handle large-scale information more effectively while improving accuracy and managing computational resources.
+3. **For engineers**, RAG means building systems that can quickly retrieve key data, allowing models to handle large-scale information more effectively while improving accuracy and managing computational resources.
 
 ## RAG Architecture and Components
 
@@ -24,7 +24,7 @@ The retriever’s two main functions—**indexing** and **querying**—are areas
 
 **Querying** retrieves these chunks in response to a specific user query. Data engineers need to ensure the system can scale to handle high volumes of data, optimize search algorithms, and minimize latency. Post-processing of the retrieved chunks to merge them into a usable format is another key step, preparing the input for the generative model.
 
-   [![](\2_2_high_level_RAG.png)](https://learning.oreilly.com/library/view/ai-engineering/9781098166298/ch06.html#6_rag_overview_1726600321985229)
+   [![](/2_2_high_level_RAG.png)](https://learning.oreilly.com/library/view/ai-engineering/9781098166298/ch06.html#6_rag_overview_1726600321985229)
 
 In modern systems, retrievers and generators are often trained separately, but an end-to-end approach, including retraining the retriever for specific data sets, can improve performance. For data engineers, fine-tuning and scaling these components is vital to the success of a RAG system.
 
@@ -101,4 +101,3 @@ Some popular libraries for vector search include:
 - **Google's ScaNN**
 - **Spotify’s ANNOY**
 - **hnswlib** (Hierarchical Navigable Small World)
-
