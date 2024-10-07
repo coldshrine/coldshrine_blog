@@ -4,14 +4,101 @@ description:
 date: "2024-06-10"
 url: https://learning.oreilly.com/library/view/ai-engineering/9781098166298/
 published: true
-  
 ---
 
-1. From a data engineer's perspective, Retrieval-Augmented Generation (RAG) enhances model performance by retrieving only the most relevant data before generating a response. This makes the process faster and more efficient, especially with large datasets.
+# RAGs Overview
 
-An example from Reading Wikipedia to Answer Open-Domain Questions (Chen et al., 2017) shows how a model retrieves five relevant Wikipedia pages for a query, using that information to generate a better answer.
+\1. **Retrieval-Augmented Generation (RAG)** enhances model performance by retrieving only the most relevant data before generating a response. This makes the process faster and more efficient, especially with large datasets.
 
-For engineers, RAG means building systems that can quickly retrieve key data, allowing models to handle large-scale information more effectively while improving accuracy and managing computational resources.
+\2. An example from *Reading Wikipedia to Answer Open-Domain Questions* (Chen et al., 2017) shows how a model retrieves five relevant Wikipedia pages for a query, using that information to generate a better answer.
 
-[![](/2_1_retreive_then_generate.png)](https://arxiv.org/abs/1704.00051)
+   [![](/2_1_retreive_then_generate.png)](https://arxiv.org/abs/1704.00051)
+
+\3. **For engineers**, RAG means building systems that can quickly retrieve key data, allowing models to handle large-scale information more effectively while improving accuracy and managing computational resources.
+
+## RAG Architecture and Components
+
+A RAG system consists of two key components: a **retriever**, which pulls relevant information from external memory sources, and a **generator**, which creates responses based on that retrieved information. Data engineers play a crucial role in designing and maintaining the architecture of these systems. In practice, this involves handling large-scale data indexing and querying efficiently.
+
+The retriever’s two main functions—**indexing** and **querying**—are areas where data engineering expertise is essential. **Indexing** involves processing and structuring data, such as splitting documents into smaller, manageable chunks, so that they can be quickly retrieved later. This helps prevent overwhelming the model with overly long contexts, making it more efficient.
+
+**Querying** retrieves these chunks in response to a specific user query. Data engineers need to ensure the system can scale to handle high volumes of data, optimize search algorithms, and minimize latency. Post-processing of the retrieved chunks to merge them into a usable format is another key step, preparing the input for the generative model.
+
+   [![](\2_2_high_level_RAG.png)](https://learning.oreilly.com/library/view/ai-engineering/9781098166298/ch06.html#6_rag_overview_1726600321985229)
+
+In modern systems, retrievers and generators are often trained separately, but an end-to-end approach, including retraining the retriever for specific data sets, can improve performance. For data engineers, fine-tuning and scaling these components is vital to the success of a RAG system.
+
+# Retrieval Algorithms
+
+Retrieval isn’t unique to RAG. It's the backbone of search engines, recommender systems, log analytics, etc. Many retrieval algorithms developed for traditional systems can be utilized for RAG. This section covers only the broad strokes.
+
+## Retrieval vs. Search
+
+Retrieval is typically limited to one database or system, whereas search involves retrieval across various systems. This chapter uses retrieval and search interchangeably.
+
+## Sparse vs. Dense Retrieval
+
+Retrieval algorithms can be divided into **sparse** and **dense** retrieval. 
+
+- **Sparse Retrievers**: Represent data using sparse vectors, where most values are 0. Term-based retrieval is considered sparse.
+
+- **Dense Retrievers**: Represent data using dense vectors, where most values are non-zero. Embedding-based retrieval is typically dense.
+
+## Term-Based Retrieval
+
+The most straightforward way to find relevant documents is by keywords, also known as **lexical retrieval**. For instance, given the query "AI engineering," retrieve all documents that contain this term. However, this approach has two main issues:
+
+1. Many documents may contain the term.
+2. Important terms can be overshadowed by less informative ones.
+
+### TF-IDF
+
+TF-IDF combines term frequency (TF) and inverse document frequency (IDF) to rank documents. The formula is:
+
+\[
+\text{TF-IDF}(D, Q) = \sum_{t \in Q} f(t, D) \cdot \text{IDF}(t)
+\]
+
+Two common term-based retrieval solutions are **Elasticsearch** and **BM25**.
+
+### Elasticsearch Example
+
+Elasticsearch, built on top of Lucene, uses an inverted index to allow fast retrieval of documents. Below is a simplified example of an inverted index:
+
+| Term    | Document Count | (Document Index, Term Frequency) |
+|---------|----------------|-----------------------------------|
+| banana  | 2              | (10, 3), (5, 2)                   |
+| machine | 4              | (1, 5), (10, 1), (38, 9), (42, 5) |
+| learning | 3              | (1, 5), (38, 7), (42, 5)         |
+
+### BM25
+
+BM25 is a modification of TF-IDF that normalizes term frequency by document length, making it a robust baseline for comparing modern retrieval algorithms.
+
+## Embedding-Based Retrieval
+
+Embedding-based retrieval ranks documents based on semantic similarity rather than lexical similarity. This approach involves:
+
+   [![](/2_3_embedding_based_retreiver.png)](https://medium.com/better-ml/embedding-learning-for-retrieval-29af1c9a1e65)
+
+1. **Indexing**: Converting original data into embeddings stored in a vector database.
+2. **Querying**: Converting the query into an embedding and fetching the closest data chunks.
+
+### How It Works
+
+- **Convert the Query**: Use the same embedding model used during indexing.
+- **Fetch k Closest Chunks**: Determine the number of data chunks (k) based on the use case and query.
+
+### Vector Search
+
+Vector search is framed as a nearest-neighbor search problem. Given a query, find the k nearest vectors using metrics such as cosine similarity.
+
+#### Popular Libraries
+
+Some popular libraries for vector search include:
+
+- **FAISS** (Facebook AI Similarity Search)
+- **Google's ScaNN**
+- **Spotify’s ANNOY**
+- **hnswlib** (Hierarchical Navigable Small World)
 
