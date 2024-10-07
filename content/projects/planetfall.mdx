@@ -14,7 +14,7 @@ Welcome to the wonderful world of **Retrieval-Augmented Generation (RAG)**! Thin
 
 Imagine you're looking for answers in a library full of books (a.k.a. your data). Instead of reading every single book (yawn!), a RAG system retrieves only the relevant ones. For instance, in *Reading Wikipedia to Answer Open-Domain Questions* (Chen et al., 2017), a model retrieves five relevant Wikipedia pages for a query to generate a better answer. Less time searching, more time solving problems! 🦸‍♂️
 
-![Retrieval Then Generate](https://arxiv.org/abs/1704.00051)
+![Retrieval Then Generate](\2_1_retreive_then_generate.png)(https://arxiv.org/abs/1704.00051)
 
 ## RAG Architecture and Components
 
@@ -33,7 +33,7 @@ The retriever has two main functions: **indexing** and **querying**. Here’s wh
 
 - **Querying**: This function retrieves those chunks in response to a specific user query. As data engineers, we ensure the system can scale to handle high data volumes, optimize search algorithms, and minimize latency. Post-processing the retrieved chunks to merge them into a usable format is another key step, preparing the input for the generative model. 
 
-![High-Level RAG Architecture](https://learning.oreilly.com/library/view/ai-engineering/9781098166298/ch06.html#6_rag_overview_1726600321985229)
+![High-Level RAG Architecture](\2_2_high_level_RAG.png)(https://learning.oreilly.com/library/view/ai-engineering/9781098166298/ch06.html#6_rag_overview_1726600321985229)
 
 In modern systems, retrievers and generators are often trained separately. However, an end-to-end approach, including retraining the retriever for specific data sets, can improve performance. For us data engineers, fine-tuning and scaling these components is vital to the success of a RAG system. We’re basically the guardians of the data galaxy! 🌌
 
@@ -90,7 +90,7 @@ BM25 is a snazzy upgrade to TF-IDF that normalizes term frequency by document le
 
 Embedding-based retrieval ranks documents based on semantic similarity rather than lexical similarity. This means you’re finding documents that *mean* the same thing, even if they don’t use the exact words. 
 
-![Embedding-Based Retriever](https://medium.com/better-ml/embedding-learning-for-retrieval-29af1c9a1e65)
+![Embedding-Based Retriever](\2_3_embedding_based_retriever.png)(https://medium.com/better-ml/embedding-learning-for-retrieval-29af1c9a1e65)
 
 Here's how it works:
 
