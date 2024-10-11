@@ -15,9 +15,10 @@ Welcome to the wonderful world of **Retrieval-Augmented Generation (RAG)**! Thin
 Imagine you're looking for answers in a library full of books (a.k.a. your data). Instead of reading every single book (yawn!), a RAG system retrieves only the relevant ones. For instance, in *Reading Wikipedia to Answer Open-Domain Questions* (Chen et al., 2017), a model retrieves five relevant Wikipedia pages for a query to generate a better answer. Less time searching, more time solving problems! 🦸‍♂️
 
 [![](/2_1_retreive_then_generate.png)](https://arxiv.org/abs/1704.00051)
+
 ## RAG Architecture and Components
 
-A RAG system consists of two key components: 
+A RAG system consists of two key components:
 
 1. A **retriever** that pulls relevant information from external memory sources.
 2. A **generator** that creates responses based on the retrieved information.
@@ -30,15 +31,15 @@ The retriever has two main functions: **indexing** and **querying**. Here’s wh
 
 - **Indexing**: This is like organizing your messy closet. You process and structure data, breaking documents into smaller, manageable chunks. This helps prevent overwhelming the model with overly long contexts, making it more efficient. Think of it as decluttering for your data! 🧹
 
-- **Querying**: This function retrieves those chunks in response to a specific user query. As data engineers, we ensure the system can scale to handle high data volumes, optimize search algorithms, and minimize latency. Post-processing the retrieved chunks to merge them into a usable format is another key step, preparing the input for the generative model. 
+- **Querying**: This function retrieves those chunks in response to a specific user query. As data engineers, we ensure the system can scale to handle high data volumes, optimize search algorithms, and minimize latency. Post-processing the retrieved chunks to merge them into a usable format is another key step, preparing the input for the generative model.
 
-!(\2_2_high_level_RAG.png)(https://learning.oreilly.com/library/view/ai-engineering/9781098166298/ch06.html#6_rag_overview_1726600321985229)
+[![](/2_2_high_level_RAG.png)](https://learning.oreilly.com/library/view/ai-engineering/9781098166298/ch06.html#6_rag_overview_1726600321985229)
 
 In modern systems, retrievers and generators are often trained separately. However, an end-to-end approach, including retraining the retriever for specific data sets, can improve performance. For us data engineers, fine-tuning and scaling these components is vital to the success of a RAG system. We’re basically the guardians of the data galaxy! 🌌
 
 # Retrieval Algorithms
 
-Retrieval isn’t just a RAG thing. It's the backbone of search engines, recommender systems, log analytics, and more. Think of retrieval as the Swiss Army knife of data science—it’s versatile! 🛠️ 
+Retrieval isn’t just a RAG thing. It's the backbone of search engines, recommender systems, log analytics, and more. Think of retrieval as the Swiss Army knife of data science—it’s versatile! 🛠️
 
 ## Retrieval vs. Search
 
@@ -46,7 +47,7 @@ Retrieval is typically limited to one database or system, while search involves 
 
 ## Sparse vs. Dense Retrieval
 
-Retrieval algorithms can be divided into **sparse** and **dense** retrieval. 
+Retrieval algorithms can be divided into **sparse** and **dense** retrieval.
 
 - **Sparse Retrievers**: These represent data using sparse vectors, where most values are 0. Term-based retrieval is considered sparse. Think of it as having a few snacks in a big empty pantry—only a little bit of useful data. 🍿
 
@@ -69,7 +70,7 @@ The TF-IDF equation can be represented as:
 
 TF-IDF(D, Q) = Σ (f(t, D) * IDF(t)) for all t in Q
 
-Two popular term-based retrieval solutions are **Elasticsearch** and **BM25**. 
+Two popular term-based retrieval solutions are **Elasticsearch** and **BM25**.
 
 ### Elasticsearch Example
 
@@ -87,14 +88,14 @@ BM25 is a snazzy upgrade to TF-IDF that normalizes term frequency by document le
 
 ## Embedding-Based Retrieval
 
-Embedding-based retrieval ranks documents based on semantic similarity rather than lexical similarity. This means you’re finding documents that *mean* the same thing, even if they don’t use the exact words. 
+Embedding-based retrieval ranks documents based on semantic similarity rather than lexical similarity. This means you’re finding documents that *mean* the same thing, even if they don’t use the exact words.
 
-!(\2_3_embedding_based_retriever.png)(https://medium.com/better-ml/embedding-learning-for-retrieval-29af1c9a1e65)
+[![](/2_3_embedding_based_retriever.png)](https://medium.com/better-ml/embedding-learning-for-retrieval-29af1c9a1e65)
 
 Here's how it works:
 
 1. **Indexing**: Convert original data into embeddings stored in a vector database. It’s like translating a book into emojis—fun and engaging! 📚➡️😀
-   
+
 2. **Querying**: Convert the query into an embedding and fetch the closest data chunks. Imagine asking your friend for their favorite pizza toppings and getting all the toppings that match your vibe! 🍕✨
 
 ### How It Works
@@ -114,3 +115,9 @@ Some popular libraries for vector search include:
 - **Google's ScaNN**
 - **Spotify’s ANNOY**
 - **hnswlib** (Hierarchical Navigable Small World)
+
+# The Future of AI Engineering in Data Architecture
+
+As AI evolves, so do the techniques we use to build and maintain data architectures. **Retrieval-Augmented Generation** is just one example of how intelligent retrieval systems can vastly improve data processing and response generation. Data engineers are central to this revolution, ensuring that the architecture supports efficient retrieval and generation.
+
+The future might even involve **agents**—autonomous systems that can query, retrieve, and generate data without human intervention. This opens exciting possibilities in automation, from handling complex datasets to real-time decision-making systems. Just imagine a world where data engineers design frameworks that let AI "agents" manage large-scale infrastructure independently—now that’s next-level data architecture!
