@@ -8,11 +8,11 @@ published: true
 
 # RAGs Overview
 
-Welcome to the wonderful world of **Retrieval-Augmented Generation (RAG)**! Think of RAG as the superhero of AI—it enhances model performance by retrieving only the most relevant data before generating a response. This nifty trick makes the process faster and more efficient, especially when you're juggling large datasets. Because who likes waiting? 😅
+Welcome to the wonderful world of **Retrieval-Augmented Generation (RAG)**! Think of RAG as the superhero of AI—it enhances model performance by retrieving only the most relevant data before generating a response. This nifty trick makes the process faster and more efficient, especially when you're juggling large datasets. Because who likes waiting?
 
 ## How RAG Works
 
-Imagine you're looking for answers in a library full of books (a.k.a. your data). Instead of reading every single book (yawn!), a RAG system retrieves only the relevant ones. For instance, in *Reading Wikipedia to Answer Open-Domain Questions* (Chen et al., 2017), a model retrieves five relevant Wikipedia pages for a query to generate a better answer. Less time searching, more time solving problems! 🦸‍♂️
+Imagine you're looking for answers in a library full of books (a.k.a. your data). Instead of reading every single book, a RAG system retrieves only the relevant ones. For instance, in *Reading Wikipedia to Answer Open-Domain Questions* (Chen et al., 2017), a model retrieves five relevant Wikipedia pages for a query to generate a better answer.
 
 [![](/2_1_retreive_then_generate.png)](https://arxiv.org/abs/1704.00051)
 
@@ -23,13 +23,13 @@ A RAG system consists of two key components:
 1. A **retriever** that pulls relevant information from external memory sources.
 2. A **generator** that creates responses based on the retrieved information.
 
-As data engineers, we play a crucial role in designing and maintaining the architecture of these systems. This involves handling large-scale data indexing and querying efficiently—because no one likes a slow database! 🐢💨
+As data engineers, we play a crucial role in designing and maintaining the architecture of these systems. This involves handling large-scale data indexing and querying efficiently.
 
 ### The Retriever's Superpowers
 
-The retriever has two main functions: **indexing** and **querying**. Here’s where our data engineering expertise comes into play:
+The retriever has two main functions: **indexing** and **querying**. Here’s where our expertise comes into play:
 
-- **Indexing**: This is like organizing your messy closet. You process and structure data, breaking documents into smaller, manageable chunks. This helps prevent overwhelming the model with overly long contexts, making it more efficient. Think of it as decluttering for your data! 🧹
+- **Indexing**: This is like organizing your messy closet, but with some powerful tools. Data engineers often use advanced structures like Log-Structured Merge (LSM) trees and B-trees to handle indexing efficiently. These structures allow us to process and organize data, breaking documents into smaller, manageable chunks for better performance. For instance, LSM trees are optimized for high write throughput, making them suitable for scenarios with frequent updates, while B-trees excel at maintaining sorted data for quick lookups. By structuring data this way, we prevent overwhelming the model with overly long contexts, making it both efficient and scalable.
 
 - **Querying**: This function retrieves those chunks in response to a specific user query. As data engineers, we ensure the system can scale to handle high data volumes, optimize search algorithms, and minimize latency. Post-processing the retrieved chunks to merge them into a usable format is another key step, preparing the input for the generative model.
 
@@ -39,26 +39,26 @@ In modern systems, retrievers and generators are often trained separately. Howev
 
 # Retrieval Algorithms
 
-Retrieval isn’t just a RAG thing. It's the backbone of search engines, recommender systems, log analytics, and more. Think of retrieval as the Swiss Army knife of data science—it’s versatile! 🛠️
+Retrieval isn’t just a RAG thing. It's the backbone of search engines, recommender systems, log analytics, and more. Think of retrieval as the Swiss Army knife.
 
 ## Retrieval vs. Search
 
-Retrieval is typically limited to one database or system, while search involves retrieval across various systems. For our purposes, we’ll use retrieval and search interchangeably. Just keep that in your back pocket for trivia night! 🧠
+Retrieval is typically limited to one database or system, while search involves retrieval across various systems. For our purposes, we’ll use retrieval and search interchangeably.
 
 ## Sparse vs. Dense Retrieval
 
 Retrieval algorithms can be divided into **sparse** and **dense** retrieval.
 
-- **Sparse Retrievers**: These represent data using sparse vectors, where most values are 0. Term-based retrieval is considered sparse. Think of it as having a few snacks in a big empty pantry—only a little bit of useful data. 🍿
+- **Sparse Retrievers**: These represent data using sparse vectors, where most values are 0. Term-based retrieval is considered sparse. Think of it as having a few snacks in a big empty pantry—only a little bit of useful data. 
 
-- **Dense Retrievers**: These represent data using dense vectors, where most values are non-zero. Embedding-based retrieval typically falls into this category. Imagine a full pantry bursting with goodies—lots of useful information! 🍰
+- **Dense Retrievers**: These represent data using dense vectors, where most values are non-zero. Embedding-based retrieval typically falls into this category. Imagine a full pantry bursting with goodies—lots of useful information.
 
 ## Term-Based Retrieval
 
 The most straightforward way to find relevant documents is by keywords, also known as **lexical retrieval**. For instance, if your query is "AI engineering," you’ll retrieve all documents containing that term. However, there are two main issues with this approach:
 
-1. You might get swamped with too many documents (good luck finding the needle in that haystack! 🐴).
-2. Important terms can get overshadowed by less informative ones (like how that one friend always talks over everyone else at dinner). 🙄
+1. You might get swamped with too many documents.
+2. Important terms can get overshadowed by less informative ones.
 
 ### TF-IDF
 
@@ -84,7 +84,7 @@ Elasticsearch, built on top of Lucene, uses an inverted index to allow fast retr
 
 ### BM25
 
-BM25 is a snazzy upgrade to TF-IDF that normalizes term frequency by document length, making it a robust baseline for comparing modern retrieval algorithms. It’s like getting the perfect fit for your favorite jeans—comfortable and just right! 👖✨
+BM25 is a snazzy upgrade to TF-IDF that normalizes term frequency by document length, making it a robust baseline for comparing modern retrieval algorithms.
 
 ## Embedding-Based Retrieval
 
@@ -94,18 +94,18 @@ Embedding-based retrieval ranks documents based on semantic similarity rather th
 
 Here's how it works:
 
-1. **Indexing**: Convert original data into embeddings stored in a vector database. It’s like translating a book into emojis—fun and engaging! 📚➡️😀
+1. **Indexing**: Convert original data into embeddings stored in a vector database. 
 
-2. **Querying**: Convert the query into an embedding and fetch the closest data chunks. Imagine asking your friend for their favorite pizza toppings and getting all the toppings that match your vibe! 🍕✨
+2. **Querying**: Convert the query into an embedding and fetch the closest data chunks. 
 
 ### How It Works
 
 - **Convert the Query**: Use the same embedding model that was used during indexing.
-- **Fetch k Closest Chunks**: Determine how many data chunks (k) to fetch based on the use case and query. It’s like picking the best slices from a pizza—everyone loves a good selection! 🍕
+- **Fetch k Closest Chunks**: Determine how many data chunks (k) to fetch based on the use case and query.
 
 ### Vector Search
 
-Vector search is framed as a nearest-neighbor search problem. Given a query, find the k nearest vectors using metrics like cosine similarity. It's like searching for your favorite playlist among a million songs—your data should jam, not just sit there! 🎶
+Vector search is framed as a nearest-neighbor search problem. Given a query, find the k nearest vectors using metrics like cosine similarity.
 
 #### Popular Libraries
 
